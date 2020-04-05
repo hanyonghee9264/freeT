@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,19 +7,90 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!--<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css" />-->
+    <script src="http://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+    <!--<script type="text/javascript" src="http://kenwheeler.github.io/slick/slick/slick.min.js"></script>-->
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}">
+    <script type="text/javascript" src="{% static 'js/slick.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+    <script>
+    $(function(){
+			$('#slider-div').slick({
+				slide: 'img',		//슬라이드 되어야 할 태그 ex) div, li
+				infinite : true, 	//무한 반복 옵션
+				slidesToShow : 1,		// 한 화면에 보여질 컨텐츠 개수
+				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+				arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+				dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+				autoplay : true,			// 자동 스크롤 사용 여부
+				autoplaySpeed : 3000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+				pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+				vertical : false,		// 세로 방향 슬라이드 옵션
+				<!--fade: true,             // 슬라이딩 효과-->
+				<!--cssEase: 'linear'       // 슬라이딩 효과-->
+				prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+				nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+				dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+				draggable : true, 	//드래그 가능 여부
+				// dots에 슬라이더 카운
+				<!--customPaging: function (slider, i) {-->
+				    <!--//FYI just have a look at the object to find aviable information-->
+                    <!--//press f12 to access the console-->
+                    <!--//you could also debug or look in the source-->
+                    <!--console.log(slider);-->
+                    <!--return (i + 1) + '/' + slider.slideCount;-->
+				<!--}-->
+			});
+			var $status = $('.pagingInfo');
+            var $slickElement = $('.slider-div');
+
+            $slickElement.on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
+                //currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+                var i = (currentSlide ? currentSlide : 0) + 1;
+                $status.text(i + '/' + slick.slideCount);
+            });
+
+            $slickElement.slick({
+                slide: 'img',
+                autoplay: true,
+                dots: true
+            });
+  		})
+
+
+    </script>
+
+    <style>
+        #main_visual {
+            width: 100%;
+
+        }
+        #slider-div {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+<span class="pagingInfo"></span>
 <div id="main_visual">
-    <div id="mslides">
-        <a href="">
-            <img src="" alt="">
-        </a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+    <div id="slider-div">
+        <img src="{% static 'images/1-w.png' %}" alt="" style="width: 100%;  display: block;">
+        <img src="{% static 'images/2-w.png' %}" alt="">
+        <img src="{% static 'images/3-w.png' %}" alt="">
+        <img src="{% static 'images/4-w.png' %}" alt="">
+        <img src="{% static 'images/5-w.png' %}" alt="">
+        <img src="{% static 'images/6-w.png' %}" alt="">
+        <img src="{% static 'images/7-w.png' %}" alt="">
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/1-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/2-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/3-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/4-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/5-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/6-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
+        <!--<a href="" style="width: 100%; height: 520px; background: url({% static 'images/7-w.png' %}) no-repeat 50% 50%; top: 0px; left: 0px; display: block;"></a>-->
     </div>
 </div>
 </body>
