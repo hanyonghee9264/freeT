@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>swiper</title>
-    <link rel="stylesheet" href="/static/swiper/css/swiper.min.css">
-    <script src="/static/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="{% static 'swiper/css/swiper.min.css' %}">
+    <script src="{% static 'swiper/js/swiper.min.js' %}"></script>
 </head>
 <body>
 <!-- Slider main container -->
@@ -15,10 +16,15 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-        <div class="swiper-slide">Slide 1</div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        ...
+        <div class="swiper-slide">
+            <img src="{% static 'images/1-w.png' %}" alt="" style="max-width: 100%;">
+        </div>
+        <div class="swiper-slide">
+            <img src="{% static 'images/2-w.png' %}" alt="" style="max-width: 100%;">
+        </div>
+        <div class="swiper-slide">
+            <img src="{% static 'images/3-w.png' %}" alt="" style="max-width: 100%;">
+        </div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
@@ -29,6 +35,40 @@
 
     <!-- If we need scrollbar -->
     <div class="swiper-scrollbar"></div>
+
+
+<script>
+var mySwiper = new Swiper('.swiper-container', {
+    loop: true,
+    autoplay: {
+        delay: 3000,
+
+      },
+
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+    pagination: {
+    el: '.swiper-pagination',
+    type: 'fraction',
+    },
+
+
+});
+</script>
+<style>
+    .swiper-pagination-fraction {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 50px;
+        color: #fff;
+
+    }
+    .swiper-pagination {
+
+    }
+</style>
 </div>
 </body>
 </html>
